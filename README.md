@@ -38,9 +38,12 @@ Next version, maybe :grin:
 
 ## Usage
 
-### Comments preferences
+### Comments
 
-Key bindings for `<!-- // ETPL_COMMENTS -->`.
+Key bindings for `<!-- // ETPL_COMMENTS -->`:
+
+* OS X: <kbd>Command</kbd> + <kbd>/</kbd>
+* Linux/Windows: <kbd>Ctrl</kbd> + <kbd>/</kbd>
 
 ### Snippets
 
