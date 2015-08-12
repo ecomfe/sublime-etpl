@@ -1,0 +1,151 @@
+<!-- // HTML 风格 -->
+<!-- if: ${name} != null -->
+    Hello ${name}!
+    Hi, ${ name }!
+    ${ *obj }
+    ${ *obj | pureValue('arg', 20) }
+<!-- else -->
+    noname!
+<!-- /if -->
+
+
+<!-- // 片段划分 -->
+<!-- target: myTpl -->
+<!-- import: header -->
+<div class="main" data-name="${name}">Hello ${name}!</div>
+<!-- import: footer -->
+<!-- /target -->
+
+<!-- target: header -->
+<header>Header Content</header>
+<!-- /target -->
+
+<!-- target: footer -->
+<footer>Footer Content</footer>
+<!-- /target -->
+
+
+<!-- // 自闭合 -->
+<!-- target: myTpl -->
+<!-- import: header -->
+<div class="main">Hello ${name}!</div>
+<!-- import: footer -->
+
+<!-- target: header -->
+<header>Header Content</header>
+
+<!-- target: footer -->
+<footer>Footer Content</footer>
+
+
+<!-- // 模板继承 -->
+<!-- target: myTpl(master = page) -->
+<!-- block: content -->
+    Hello ${name}!
+<!-- /block -->
+
+<!-- target: page -->
+<header><!-- block: header -->Header Content<!-- /block --></header>
+<div class="main"><!-- block: content --><!-- /block --></div>
+
+
+<!-- // 引用带入 -->
+<!-- target: myTpl -->
+<!-- import: header -->
+<!-- import: main -->
+    <!-- block: main -->
+        <!-- import: list -->
+            <!-- block: list -->biz list<!-- /block -->
+        <!-- /import -->
+        <!-- import: pager -->
+            <!-- block: pager -->biz pager<!-- /block -->
+        <!-- /import -->
+    <!-- /block -->
+<!-- /import -->
+
+<!-- target: header -->
+<header><!-- block: header -->default header<!-- /block --></header>
+
+<!-- target: main -->
+<div>
+    <!-- block: main -->default main<!-- /block -->
+</div>
+
+<!-- target: list -->
+<div class="list">
+    <!-- block: list -->default list<!-- /block -->
+</div>
+
+<!-- target: pager -->
+<div class="pager">
+    <!-- block: pager -->default pager<!-- /block -->
+</div>
+
+
+<!-- // 动态调用 -->
+<ul>
+<!-- for: ${persons} as ${p} -->
+    <!-- use: item(main=${p.name}, sub=${p.email}) -->
+<!-- /for -->
+</ul>
+
+<!-- target: item --><li>${main}[${sub}]</li>
+
+
+<!-- // 循环 -->
+<ul>
+<!-- for: ${persons} as ${person} -->
+    <li>${person.name}[${person.email}]</li>
+<!-- /for -->
+</ul>
+
+
+<!-- // 过滤器 -->
+Hello ${htmlContent}!
+Hello ${htmlContent | raw}!
+Search <a href="http://www.baidu.com/s?wd=${urlContent | url}">${urlContent}</a>!
+Search <a href="http://www.baidu.com/s?wd=${urlContent | slice(0, 2) | url}">${urlContent | slice(0, 2)}</a>!
+
+
+<!-- // 数据声明 -->
+<!-- var: name = "errorrik" -->
+Hello ${name}!
+
+
+<!-- // 内容块过滤 -->
+<!-- filter: markdown -->
+## ETpl Contributors
+
+- errorrik
+- otakustay
+- firede
+
+<!-- /filter -->
+
+
+<!-- // TODO 测试评论中的高亮关键词 -->
+
+
+<!-- // 在 JavaScript 与 CSS 中仅支持在顶级作用域的 Command（通常用来做逻辑判断），FIXME 暂不支持 Variable -->
+<script>
+<!-- if: ${isSPA} -->
+require(['app']);
+<!-- else -->
+require(['boot']);
+
+// 这儿代码高亮失效了
+console.log('${variable}')
+<!-- /if -->
+</script>
+
+<style>
+<!-- if: ${ua} === 'iPhone 6 Plus' -->
+html {
+    font-size: 100%;
+}
+<!-- else -->
+html {
+    font-size: 87.5%;
+}
+<!-- /if -->
+</style>

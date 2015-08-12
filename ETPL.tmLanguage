@@ -117,6 +117,12 @@
 					<key>include</key>
 					<string>#invalid-comments</string>
 				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(?i:TODO|FIXME)\b</string>
+					<key>name</key>
+					<string>invalid.reminder.etpl</string>
+				</dict>
 			</array>
 		</dict>
 		<key>entities</key>
@@ -451,6 +457,10 @@
 							<array>
 								<dict>
 									<key>include</key>
+									<string>#commands</string>
+								</dict>
+								<dict>
+									<key>include</key>
 									<string>source.css</string>
 								</dict>
 							</array>
@@ -540,6 +550,10 @@
 									<string>\*/|(?=&lt;/script)</string>
 									<key>name</key>
 									<string>comment.block.js</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#commands</string>
 								</dict>
 								<dict>
 									<key>include</key>

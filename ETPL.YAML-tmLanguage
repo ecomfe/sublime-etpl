@@ -69,6 +69,8 @@ repository:
     end: -->
     patterns:
     - include: '#invalid-comments'
+    - name: invalid.reminder.etpl
+      match: \b(?i:TODO|FIXME)\b
 
   variables:
     comment: ETPL Variables, like ${name}, ${ data.name | raw }
@@ -223,6 +225,7 @@ repository:
         beginCaptures:
           '1': {name: punctuation.definition.tag.html}
         patterns:
+        - include: '#commands'
         - include: source.css
     - name: source.js.embedded.html
       begin: (?:^\s+)?(<)((?i:script))\b(?![^>]*/>)
@@ -249,6 +252,7 @@ repository:
           end: \*/|(?=</script)
           captures:
             '0': {name: punctuation.definition.comment.js}
+        - include: '#commands'
         - include: source.js
     - name: meta.tag.structure.any.html
       begin: (</?)((?i:body|head|html)\b)
