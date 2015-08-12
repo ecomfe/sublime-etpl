@@ -3,6 +3,6 @@
 ${0}
 <!-- /if -->]]></content>
     <tabTrigger>if</tabTrigger>
-    <scope>source.etpl</scope>
+    <scope>text.html.etpl</scope>
     <description>if (ETPL)</description>
 </snippet>

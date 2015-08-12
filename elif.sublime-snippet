@@ -2,6 +2,6 @@
     <content><![CDATA[<!-- elif: ${1:CONDITIONAL_EXPRESSION} -->
 ${0}]]></content>
     <tabTrigger>elif</tabTrigger>
-    <scope>source.etpl</scope>
+    <scope>text.html.etpl</scope>
     <description>elif (ETPL)</description>
 </snippet>

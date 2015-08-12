@@ -2,6 +2,6 @@
     <content><![CDATA[<!-- var: ${1:VAR_NAME} = ${2:EXPRESSION} -->
 ${0}]]></content>
     <tabTrigger>var</tabTrigger>
-    <scope>source.etpl</scope>
+    <scope>text.html.etpl</scope>
     <description>var (ETPL)</description>
 </snippet>

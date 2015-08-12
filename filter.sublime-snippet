@@ -3,6 +3,6 @@
 ${0}
 <!-- /filter -->]]></content>
     <tabTrigger>filter</tabTrigger>
-    <scope>source.etpl</scope>
+    <scope>text.html.etpl</scope>
     <description>filter (ETPL)</description>
 </snippet>

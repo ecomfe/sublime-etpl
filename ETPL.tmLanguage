@@ -1064,7 +1064,7 @@
 		</dict>
 	</dict>
 	<key>scopeName</key>
-	<string>source.etpl</string>
+	<string>text.html.etpl</string>
 	<key>uuid</key>
 	<string>f8961911-529d-48e9-8fd2-58c5d733ae68</string>
 </dict>

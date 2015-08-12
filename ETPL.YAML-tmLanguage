@@ -3,7 +3,7 @@
 # github: https://github.com/firede/sublime-etpl
 ---
 name: ETPL
-scopeName: source.etpl
+scopeName: text.html.etpl
 fileTypes: [etpl, tpl, text.html, tpl.html]
 uuid: f8961911-529d-48e9-8fd2-58c5d733ae68
 
