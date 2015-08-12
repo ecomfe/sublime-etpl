@@ -7,6 +7,12 @@ An ETPL syntax definition & snippets specifically for Sublime Text.
 
 [ETPL](http://ecomfe.github.io/etpl/) is a reusable, flexible, high-performance JavaScript template engine for Browser & Node.
 
+## Screenshot
+
+<img width="906" alt="Base 16 Ocean" src="https://cloud.githubusercontent.com/assets/157338/9234352/f8621de0-416a-11e5-9288-7409a647f8fa.png">
+
+<img width="906" alt="Tomorrow" src="https://cloud.githubusercontent.com/assets/157338/9234358/ffdaffd8-416a-11e5-964c-a6a23be84dbc.png">
+
 ## Install
 
 ### Get it through Git
