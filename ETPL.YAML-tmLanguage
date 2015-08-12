@@ -36,8 +36,8 @@ repository:
 
   operator:
     patterns:
-    - name: meta.delimiter.object.comma.etpl
-      match: \b,\b
+    - name: meta.delimiter.comma.etpl
+      match: ','
     - name: keyword.operator.block.etpl
       match: '!|\$|%|&|\*|\-\-|\-|\+\+|\+|~|===|==|=|!=|!==|<=|>=|<<=|>>=|>>>=|<>|<|>|!|&&|\|\||\?\:|\*=|(?<!\()/=|%=|\+=|\-=|&=|\^=|\[|\]|\.|\b(as)\b'
 

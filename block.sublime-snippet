@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[<!-- block: ${1:BLOCK_NAME} -->
+${0}
+<!-- /block -->]]></content>
+    <tabTrigger>block</tabTrigger>
+    <scope>source.etpl</scope>
+    <description>block (ETPL)</description>
+</snippet>

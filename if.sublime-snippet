@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[<!-- if: ${1:CONDITIONAL_EXPRESSION} -->
+${0}
+<!-- /if -->]]></content>
+    <tabTrigger>if</tabTrigger>
+    <scope>source.etpl</scope>
+    <description>if (ETPL)</description>
+</snippet>

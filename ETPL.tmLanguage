@@ -733,9 +733,9 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b,\b</string>
+					<string>,</string>
 					<key>name</key>
-					<string>meta.delimiter.object.comma.etpl</string>
+					<string>meta.delimiter.comma.etpl</string>
 				</dict>
 				<dict>
 					<key>match</key>
