@@ -1,8 +1,8 @@
 <snippet>
-    <content><![CDATA[<!-- filter: ${1:${2:FILTER_NAME}(${3:ARGUMENTS})} -->
+	<content><![CDATA[<!-- filter: ${1:${2:FILTER_NAME}(${3:ARGUMENTS})} -->
 ${0}
 <!-- /filter -->]]></content>
-    <tabTrigger>filter</tabTrigger>
-    <scope>text.html.etpl</scope>
-    <description>filter (ETPL)</description>
+	<tabTrigger>filter:</tabTrigger>
+	<scope>text.html.etpl</scope>
+	<description>filter (ETPL)</description>
 </snippet>

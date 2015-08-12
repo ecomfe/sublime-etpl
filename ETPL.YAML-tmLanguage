@@ -10,88 +10,95 @@ uuid: f8961911-529d-48e9-8fd2-58c5d733ae68
 patterns:
 - include: '#comments'
 - include: '#variables'
-- include: '#block-expressions'
+- include: '#commands'
 - include: '#html-tags'
 - include: text.html.basic
 
 repository:
-  block-expressions:
+  commands:
+    name: meta.command.etpl
+    begin: (<!--)\s*(\/)?([a-z]+)\s*(:)?
+    end: (-->)
+    beginCaptures:
+      '1': {name: storage.type.command.begin.etpl}
+      '2': {name: keyword.operator.command.close.etpl}
+      '3': {name: support.class.etpl entity.name.command.etpl}
+      '4': {name: keyword.operator.command.start.etpl}
+    endCaptures:
+      '1': {name: storage.type.command.end.etpl}
     patterns:
-    - name: meta.block.etpl
-      contentName: variable.language.block.etpl
-      begin: (<!--)\s*(\/)?([a-z]+)\s*(:)?
-      end: (-->)
-      beginCaptures:
-        '1': {name: entity.name.function.begin.etpl}
-        '2': {name: keyword.operator.function.close.etpl}
-        '3': {name: entity.name.function.etpl}
-        '4': {name: keyword.operator.function.start.etpl}
-      endCaptures:
-        '1': {name: entity.name.function.end.etpl}
-      patterns:
-      - include: '#string'
-      - include: '#variables'
-      - include: '#func'
-      - include: '#operator'
+    - include: '#string'
+    - include: '#numeric'
+    - include: '#variables'
+    - include: '#func'
+    - include: '#operator'
 
   operator:
     patterns:
     - name: meta.delimiter.comma.etpl
       match: ','
-    - name: keyword.operator.block.etpl
-      match: '!|\$|%|&|\*|\-\-|\-|\+\+|\+|~|===|==|=|!=|!==|<=|>=|<<=|>>=|>>>=|<>|<|>|!|&&|\|\||\?\:|\*=|(?<!\()/=|%=|\+=|\-=|&=|\^=|\[|\]|\.|\b(as)\b'
+    - name: keyword.operator.etpl
+      match: '!|\$|%|&|\*|\-\-|\-|\+\+|\+|~|===|==|=|!=|!==|<=|>=|<<=|>>=|>>>=|<>|<|>|!|&&|\|\||\?\:|\*=|(?<!\()/=|%=|\+=|\-=|&=|\^=|\.|\b(as)\b'
+    - name: meta.brace.square.etpl
+      match: '\[|\]'
 
   func:
-    # name: entity.name.function.custom.etpl
     begin: ([a-zA-Z0-9\_]+)(\()
     end: (\))
     beginCaptures:
       '1': {name: entity.name.function.etpl}
-      '2': {name: entity.name.function.start.etpl}
+      '2': {name: keyword.operator.etpl meta.brace.round.etpl}
     endCaptures:
-      '1': {name: entity.name.function.end.etpl}
+      '1': {name: keyword.operator.etpl meta.brace.round.etpl}
     patterns:
     - include: '#string'
+    - include: '#numeric'
     - include: '#variables'
     - include: '#operator'
-    - name: constant.numeric.etpl
-      match: \b((0(x|X)[0-9a-fA-F]+)|([0-9]+(\.[0-9]+)?))\b
+    - include: '#parameter-in'
+
+  numeric:
+    name: constant.numeric.etpl
+    match: \b((0(x|X)[0-9a-fA-F]+)|([0-9]+(\.[0-9]+)?))\b
 
   comments:
     comment: ETPL comments, like <!-- // comments -->
-    name: comment.block.etpl
+    name: comment.line.character.etpl
     contentName: string.unquoted.comment.etpl
-    begin: (<!--)\s*\/\/
-    end: (-->)
-    captures:
-      '1': {name: comment.block.etpl}
+    begin: <!--\s*\/\/
+    end: -->
     patterns:
     - include: '#invalid-comments'
 
   variables:
+    comment: ETPL Variables, like ${name}, ${ data.name | raw }
+    name: variable.other.etpl
+    begin: (\$\{)\s*(\*?)\s*
+    end: \s*(\})
+    beginCaptures:
+      '1': {name: storage.type.variable.begin.etpl}
+      '2': {name: storage.modifier.raw.etpl}
+    endCaptures:
+      '1': {name: storage.type.variable.end.etpl}
     patterns:
-    - comment: Simple syntax, like ${name}, ${data.email}
-      name: variable.language.etpl
-      begin: (\$\{)\s*(\*?)\s*
-      end: \s*(\})
-      beginCaptures:
-        '1': {name: support.function.start.etpl}
-        '2': {name: keyword.operator.raw.etpl}
-      endCaptures:
-        '1': {name: support.function.end.etpl}
-      patterns:
-      - include: '#string'
-      - include: '#func'
-      - include: '#operator'
-      - include: '#pipeline'
-      # - name: support.function.etpl
-      #   match: \s*(\*)?(\S+)?(?:\})
-      #   captures:
-      #     '1': {name: keyword.operator.raw.etpl}
-      #     '2': {name: support.function.etpl}
+    - include: '#string'
+    - include: '#numeric'
+    - include: '#func'
+    - include: '#operator'
+    - include: '#pipeline'
+    - include: '#variable-in'
+
+  variable-in:
+    name: entity.other.attribute-name.etpl variable.other.in.etpl
+    match: '\b([a-zA-Z0-9_])+\b'
+
+  parameter-in:
+    name: variable.parameter.in.etpl
+    match: '\b([a-zA-Z0-9_])+\b'
+
   pipeline:
     match: \s*\|\s*
-    name: support.function.separator.etpl
+    name: keyword.control.pipeline.etpl
 
   string:
     patterns:
@@ -110,7 +117,7 @@ repository:
     - include: '#variables'
     - include: '#escaped-single-quote'
     - include: '#comments'
-    - include: '#block-expressions'
+    - include: '#commands'
     - include: '#entities'
 
   string-double-quoted:
@@ -125,7 +132,7 @@ repository:
     - include: '#variables'
     - include: '#escaped-double-quote'
     - include: '#comments'
-    - include: '#block-expressions'
+    - include: '#commands'
     - include: '#entities'
 
   escaped-single-quote:
@@ -181,7 +188,7 @@ repository:
       - include: '#invalid-comments'
       # embedded code
       - include: '#variables'
-      - include: '#block-expressions'
+      - include: '#commands'
     - name: meta.tag.sgml.html
       begin: '<!'
       end: '>'
@@ -199,7 +206,7 @@ repository:
         end: ']](?=>)'
         patterns:
         - include: '#variables'
-        - include: '#block-expressions'
+        - include: '#commands'
       - name: invalid.illegal.bad-comments-or-CDATA.html
         match: (\s*)(?!--|>)\S(\s*)
     - name: source.css.embedded.html
@@ -298,7 +305,7 @@ repository:
     - include: '#string'
     - include: '#comments'
     - include: '#variables'
-    - include: '#block-expressions'
+    - include: '#commands'
 
   tag-generic-attribute:
     name: entity.other.attribute-name.html
@@ -322,7 +329,7 @@ repository:
         '0': {name: punctuation.definition.string.end.html}
       patterns:
       - include: '#variables'
-      - include: '#block-expressions'
+      - include: '#commands'
       - include: '#entities'
     - name: string.quoted.single.html
       contentName: meta.toc-list.id.html
@@ -334,7 +341,7 @@ repository:
         '0': {name: punctuation.definition.string.end.html}
       patterns:
       - include: '#variables'
-      - include: '#block-expressions'
+      - include: '#commands'
       - include: '#entities'
 
   invalid-comments:

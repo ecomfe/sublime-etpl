@@ -23,7 +23,7 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#block-expressions</string>
+			<string>#commands</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -36,92 +36,81 @@
 	</array>
 	<key>repository</key>
 	<dict>
-		<key>block-expressions</key>
+		<key>commands</key>
 		<dict>
+			<key>begin</key>
+			<string>(&lt;!--)\s*(\/)?([a-z]+)\s*(:)?</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.command.begin.etpl</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.command.close.etpl</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>support.class.etpl entity.name.command.etpl</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.command.start.etpl</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(--&gt;)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.command.end.etpl</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.command.etpl</string>
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>begin</key>
-					<string>(&lt;!--)\s*(\/)?([a-z]+)\s*(:)?</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>entity.name.function.begin.etpl</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.operator.function.close.etpl</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>entity.name.function.etpl</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.operator.function.start.etpl</string>
-						</dict>
-					</dict>
-					<key>contentName</key>
-					<string>variable.language.block.etpl</string>
-					<key>end</key>
-					<string>(--&gt;)</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>entity.name.function.end.etpl</string>
-						</dict>
-					</dict>
-					<key>name</key>
-					<string>meta.block.etpl</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#string</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#variables</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#func</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#operator</string>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#string</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#numeric</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#variables</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#func</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#operator</string>
 				</dict>
 			</array>
 		</dict>
 		<key>comments</key>
 		<dict>
 			<key>begin</key>
-			<string>(&lt;!--)\s*\/\/</string>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>comment.block.etpl</string>
-				</dict>
-			</dict>
+			<string>&lt;!--\s*\/\/</string>
 			<key>comment</key>
 			<string>ETPL comments, like &lt;!-- // comments --&gt;</string>
 			<key>contentName</key>
 			<string>string.unquoted.comment.etpl</string>
 			<key>end</key>
-			<string>(--&gt;)</string>
+			<string>--&gt;</string>
 			<key>name</key>
-			<string>comment.block.etpl</string>
+			<string>comment.line.character.etpl</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -189,7 +178,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.function.start.etpl</string>
+					<string>keyword.operator.etpl meta.brace.round.etpl</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -199,7 +188,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.function.end.etpl</string>
+					<string>keyword.operator.etpl meta.brace.round.etpl</string>
 				</dict>
 			</dict>
 			<key>patterns</key>
@@ -210,6 +199,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#numeric</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#variables</string>
 				</dict>
 				<dict>
@@ -217,10 +210,8 @@
 					<string>#operator</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>\b((0(x|X)[0-9a-fA-F]+)|([0-9]+(\.[0-9]+)?))\b</string>
-					<key>name</key>
-					<string>constant.numeric.etpl</string>
+					<key>include</key>
+					<string>#parameter-in</string>
 				</dict>
 			</array>
 		</dict>
@@ -347,7 +338,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#block-expressions</string>
+							<string>#commands</string>
 						</dict>
 					</array>
 				</dict>
@@ -400,7 +391,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#block-expressions</string>
+									<string>#commands</string>
 								</dict>
 							</array>
 						</dict>
@@ -727,6 +718,13 @@
 			<key>name</key>
 			<string>invalid.illegal.bad-comments-or-CDATA.html</string>
 		</dict>
+		<key>numeric</key>
+		<dict>
+			<key>match</key>
+			<string>\b((0(x|X)[0-9a-fA-F]+)|([0-9]+(\.[0-9]+)?))\b</string>
+			<key>name</key>
+			<string>constant.numeric.etpl</string>
+		</dict>
 		<key>operator</key>
 		<dict>
 			<key>patterns</key>
@@ -739,18 +737,31 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>!|\$|%|&amp;|\*|\-\-|\-|\+\+|\+|~|===|==|=|!=|!==|&lt;=|&gt;=|&lt;&lt;=|&gt;&gt;=|&gt;&gt;&gt;=|&lt;&gt;|&lt;|&gt;|!|&amp;&amp;|\|\||\?\:|\*=|(?&lt;!\()/=|%=|\+=|\-=|&amp;=|\^=|\[|\]|\.|\b(as)\b</string>
+					<string>!|\$|%|&amp;|\*|\-\-|\-|\+\+|\+|~|===|==|=|!=|!==|&lt;=|&gt;=|&lt;&lt;=|&gt;&gt;=|&gt;&gt;&gt;=|&lt;&gt;|&lt;|&gt;|!|&amp;&amp;|\|\||\?\:|\*=|(?&lt;!\()/=|%=|\+=|\-=|&amp;=|\^=|\.|\b(as)\b</string>
 					<key>name</key>
-					<string>keyword.operator.block.etpl</string>
+					<string>keyword.operator.etpl</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\[|\]</string>
+					<key>name</key>
+					<string>meta.brace.square.etpl</string>
 				</dict>
 			</array>
+		</dict>
+		<key>parameter-in</key>
+		<dict>
+			<key>match</key>
+			<string>\b([a-zA-Z0-9_])+\b</string>
+			<key>name</key>
+			<string>variable.parameter.in.etpl</string>
 		</dict>
 		<key>pipeline</key>
 		<dict>
 			<key>match</key>
 			<string>\s*\|\s*</string>
 			<key>name</key>
-			<string>support.function.separator.etpl</string>
+			<string>keyword.control.pipeline.etpl</string>
 		</dict>
 		<key>string</key>
 		<dict>
@@ -806,7 +817,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#block-expressions</string>
+					<string>#commands</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -854,7 +865,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#block-expressions</string>
+					<string>#commands</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -925,7 +936,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#block-expressions</string>
+							<string>#commands</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -966,7 +977,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#block-expressions</string>
+							<string>#commands</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -1002,63 +1013,73 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#block-expressions</string>
+					<string>#commands</string>
 				</dict>
 			</array>
 		</dict>
+		<key>variable-in</key>
+		<dict>
+			<key>match</key>
+			<string>\b([a-zA-Z0-9_])+\b</string>
+			<key>name</key>
+			<string>entity.other.attribute-name.etpl variable.other.in.etpl</string>
+		</dict>
 		<key>variables</key>
 		<dict>
+			<key>begin</key>
+			<string>(\$\{)\s*(\*?)\s*</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.variable.begin.etpl</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.modifier.raw.etpl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>ETPL Variables, like ${name}, ${ data.name | raw }</string>
+			<key>end</key>
+			<string>\s*(\})</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.variable.end.etpl</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>variable.other.etpl</string>
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>begin</key>
-					<string>(\$\{)\s*(\*?)\s*</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>support.function.start.etpl</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.operator.raw.etpl</string>
-						</dict>
-					</dict>
-					<key>comment</key>
-					<string>Simple syntax, like ${name}, ${data.email}</string>
-					<key>end</key>
-					<string>\s*(\})</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>support.function.end.etpl</string>
-						</dict>
-					</dict>
-					<key>name</key>
-					<string>variable.language.etpl</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#string</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#func</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#operator</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#pipeline</string>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#string</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#numeric</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#func</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#operator</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#pipeline</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#variable-in</string>
 				</dict>
 			</array>
 		</dict>

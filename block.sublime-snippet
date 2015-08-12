@@ -1,8 +1,8 @@
 <snippet>
-    <content><![CDATA[<!-- block: ${1:BLOCK_NAME} -->
+	<content><![CDATA[<!-- block: ${1:BLOCK_NAME} -->
 ${0}
 <!-- /block -->]]></content>
-    <tabTrigger>block</tabTrigger>
-    <scope>text.html.etpl</scope>
-    <description>block (ETPL)</description>
+	<tabTrigger>block:</tabTrigger>
+	<scope>text.html.etpl</scope>
+	<description>block (ETPL)</description>
 </snippet>
