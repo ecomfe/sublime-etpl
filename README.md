@@ -32,9 +32,13 @@ The `Packages` directory is located at:
     * Linux: `~/.Sublime Text 2/Packages/`
     * Windows: `%APPDATA%/Sublime Text 2/Packages/`
 
-### Git it through Sublime Package Control
+### Get it through Sublime Package Control
 
-Next version, maybe :grin:
+If you haven't used it yet, just install it from the link above and then:
+
+1. Press <kbd>Shift</kbd> + <kbd>Command</kbd> (or <kbd>Ctrl</kbd>) + <kbd>P</kbd>
+2. Type `install`, to bring up the "Package Control: Install Package" option, and press <kbd>Enter</kbd>
+3. Look for `ETPL`, and press <kbd>Enter</kbd> to install it.
 
 ## Usage
 
