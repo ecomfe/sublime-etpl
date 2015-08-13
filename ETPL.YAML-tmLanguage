@@ -64,7 +64,6 @@ repository:
   comments:
     comment: ETPL comments, like <!-- // comments -->
     name: comment.line.character.etpl
-    contentName: string.unquoted.comment.etpl
     begin: <!--\s*\/\/
     end: -->
     patterns:

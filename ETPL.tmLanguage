@@ -105,8 +105,6 @@
 			<string>&lt;!--\s*\/\/</string>
 			<key>comment</key>
 			<string>ETPL comments, like &lt;!-- // comments --&gt;</string>
-			<key>contentName</key>
-			<string>string.unquoted.comment.etpl</string>
 			<key>end</key>
 			<string>--&gt;</string>
 			<key>name</key>

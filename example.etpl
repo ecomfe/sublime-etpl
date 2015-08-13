@@ -8,7 +8,6 @@
     noname!
 <!-- /if -->
 
-
 <!-- // 片段划分 -->
 <!-- target: myTpl -->
 <!-- import: header -->
@@ -24,7 +23,6 @@
 <footer>Footer Content</footer>
 <!-- /target -->
 
-
 <!-- // 自闭合 -->
 <!-- target: myTpl -->
 <!-- import: header -->
@@ -37,7 +35,6 @@
 <!-- target: footer -->
 <footer>Footer Content</footer>
 
-
 <!-- // 模板继承 -->
 <!-- target: myTpl(master = page) -->
 <!-- block: content -->
@@ -47,7 +44,6 @@
 <!-- target: page -->
 <header><!-- block: header -->Header Content<!-- /block --></header>
 <div class="main"><!-- block: content --><!-- /block --></div>
-
 
 <!-- // 引用带入 -->
 <!-- target: myTpl -->
@@ -81,7 +77,6 @@
     <!-- block: pager -->default pager<!-- /block -->
 </div>
 
-
 <!-- // 动态调用 -->
 <ul>
 <!-- for: ${persons} as ${p} -->
@@ -91,7 +86,6 @@
 
 <!-- target: item --><li>${main}[${sub}]</li>
 
-
 <!-- // 循环 -->
 <ul>
 <!-- for: ${persons} as ${person} -->
@@ -99,18 +93,15 @@
 <!-- /for -->
 </ul>
 
-
 <!-- // 过滤器 -->
 Hello ${htmlContent}!
 Hello ${htmlContent | raw}!
 Search <a href="http://www.baidu.com/s?wd=${urlContent | url}">${urlContent}</a>!
 Search <a href="http://www.baidu.com/s?wd=${urlContent | slice(0, 2) | url}">${urlContent | slice(0, 2)}</a>!
 
-
 <!-- // 数据声明 -->
 <!-- var: name = "errorrik" -->
 Hello ${name}!
-
 
 <!-- // 内容块过滤 -->
 <!-- filter: markdown -->
@@ -122,9 +113,7 @@ Hello ${name}!
 
 <!-- /filter -->
 
-
 <!-- // TODO 测试评论中的高亮关键词 -->
-
 
 <!-- // 在 JavaScript 与 CSS 中仅支持在顶级作用域的 Command（通常用来做逻辑判断），FIXME 暂不支持 Variable -->
 <script>
