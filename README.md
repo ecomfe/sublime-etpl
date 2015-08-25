@@ -19,7 +19,7 @@ An ETPL syntax definition & snippets specifically for Sublime Text.
 
 Clone the repository in your Sublime Text `Packages` directory:
 
-    git clone git@github.com:ecomfe/sublime-etpl.git ETPL
+    git clone https://github.com/ecomfe/sublime-etpl.git ETPL
 
 The `Packages` directory is located at:
 
