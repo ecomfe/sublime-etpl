@@ -48,7 +48,7 @@ def yaml2plist():
     data = parseYAML(text)
     plistlib.writePlist(data, new_plist_path)
 
-def onchange():
+def renderTPL():
     args = ['/usr/local/bin/node', tpl_parser_path , stringify(template_list), getConfig()];
 
     try:
@@ -59,8 +59,10 @@ def onchange():
         out, err = proc.communicate()
         if err:
             print 'Parse template error: \n' + str(err)
-        else:
-            yaml2plist()
+
+def onchange():
+    renderTPL()
+    yaml2plist()
 
 settings.clear_on_change('ETPL');
 settings.add_on_change('ETPL', onchange);

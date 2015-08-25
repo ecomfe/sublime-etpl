@@ -40,6 +40,18 @@ If you haven't used it yet, just install it from the link above and then:
 2. Type `install`, to bring up the "Package Control: Install Package" option, and press <kbd>Enter</kbd>
 3. Look for `ETPL`, and press <kbd>Enter</kbd> to install it.
 
+## Settings
+
+### Default settings
+```
+{
+    "commandOpen": "<!--",
+    "commandClose": "-->",
+    "variableOpen": "${",
+    "variableClose": "}"
+}
+```
+
 ## Usage
 
 ### Comments
