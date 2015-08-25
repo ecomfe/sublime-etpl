@@ -1,5 +1,5 @@
 <snippet>
-	<content><![CDATA[<!-- filter: ${1:${2:FILTER_NAME}(${3:ARGUMENTS})} -->
+	<content><![CDATA[#{commandOpen} filter: ${1:${2:FILTER_NAME}(${3:ARGUMENTS})} #{commandClose}
 ${0}
 <!-- /filter -->]]></content>
 	<tabTrigger>filter:</tabTrigger>

@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var path = require('path');
+
+var argv = process.argv;
+var files = parse(argv[2]);
+var config = parse(argv[3]);
+
+function parse (str) {
+    try {
+        return JSON.parse(str);
+    }
+    catch (e) {
+        return null;
+    }
+}
+
+function escapeRegExp(str) {
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+}
+
+function render(tpl, data, escape) {
+    return tpl.replace(/\#\{([^\}]*)\}/g, function ($0, $1) {
+        var token = config[$1] ? config[$1] : $1;
+        return escape ? escapeRegExp(token) : token;
+    });
+}
+
+files.forEach(function (file) {
+
+    var source = path.resolve(__dirname, 'template', file);
+    var target = path.resolve(__dirname, file.split('.tpl')[0]);
+
+    fs.readFile(source, {encoding: 'utf-8'}, function (err, tpl) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+
+        fs.writeFile(target, render(tpl, config, /yaml/i.test(source)));
+    });
+});

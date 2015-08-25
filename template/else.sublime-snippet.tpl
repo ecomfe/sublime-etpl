@@ -1,5 +1,5 @@
 <snippet>
-	<content><![CDATA[<!-- else -->
+	<content><![CDATA[#{commandOpen} else #{commandClose}
 ${0}]]></content>
 	<tabTrigger>else:</tabTrigger>
 	<scope>text.html.etpl</scope>
