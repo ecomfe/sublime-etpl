@@ -8,7 +8,7 @@ import sublime, sublime_plugin
 
 settings = None
 
-cwd = os.path.dirname(__file__)
+cwd = os.path.abspath(os.path.dirname(__file__))
 
 PLUGIN_NAME = 'ETPL'
 template_dir = os.path.join(cwd, 'template')
