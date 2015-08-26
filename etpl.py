@@ -1,23 +1,35 @@
 import os
+import sys
 import subprocess
-import json
 import yaml
 import plistlib
+import re
 
 import sublime, sublime_plugin
 
 settings = sublime.load_settings("ETPL.sublime-settings")
-cwd = os.getcwd()
 
+cwd = os.path.dirname(__file__)
+
+PLUGIN_NAME = 'ETPL'
 template_dir = os.path.join(cwd, 'template')
 yaml_path = os.path.join(cwd, 'ETPL.YAML-tmLanguage')
 new_plist_path = os.path.join(cwd, 'ETPL.tmLanguage')
-tpl_parser_path = os.path.join(cwd, 'replacer')
+libpath = os.path.join(cwd, 'Lib')
 
 template_list = os.listdir(template_dir)
 
-def stringify(obj):
-    return json.JSONEncoder().encode(obj)
+p = re.compile(r'\#\{([^\}]*)\}')
+
+def add(path):
+    if not path in sys.path:
+        sys.path.append(path)
+        print("[%s] Added %s to sys.path." % (PLUGIN_NAME, path))
+
+# Make sublime_lib (and more) available for all packages.
+add(libpath)
+# Differentiate between Python 2 and Python 3 packages (split by folder)
+add(os.path.join(libpath, "_py%d" % sys.version_info[0]))
 
 def getConfig():
 
@@ -26,41 +38,65 @@ def getConfig():
     for key in ['commandOpen', 'commandClose', 'variableOpen', 'variableClose']:
         conf[key] = settings.get(key, key)
 
-    return stringify(conf)
+    return conf
 
 def parseYAML(text):
-    try:
-        data = yaml.safe_load(text)
-    except Exception as e:
-        print str(e)
-    else:
-        return data
+    # try:
+    data = yaml.safe_load(text)
+    # except Exception as e:
+    #     print e
+    # else:
+    return data
 
 def yaml2plist():
     file_obj = open(yaml_path)
-    try:
-        text = file_obj.read()
-    except Exception, e:
-        raise
-    finally:
-        file_obj.close()
+    text = file_obj.read()
+    file_obj.close()
 
     data = parseYAML(text)
     plistlib.writePlist(data, new_plist_path)
 
-def renderTPL():
-    args = ['/usr/local/bin/node', tpl_parser_path , stringify(template_list), getConfig()];
+def read_file(source_path):
+    file_obj = open(source_path)
+    text = file_obj.read()
+    file_obj.close()
+    return text
 
-    try:
-        proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    except Exception, e:
-        print str(e)
-    else:
-        out, err = proc.communicate()
-        if err:
-            print 'Parse template error: \n' + str(err)
+def write_file(target_path, text):
+    file_obj = open(target_path, 'w')
+    file_obj.writelines(text)
+    file_obj.close()
+
+def render(source_path, target_path):
+
+    escape = False
+    if source_path.lower().find('yaml') > -1:
+        escape = True
+
+    def replace(m):
+        if escape:
+            return re.escape(conf[m.group(1)])
+
+        return conf[m.group(1)]
+
+    text = read_file(source_path)
+
+    text = p.sub(replace, text)
+
+    write_file(target_path, text)
+
+def get_new_file_name(file_name):
+    return os.path.splitext(file_name)[0];
+
+def renderTPL():
+    for file_name in template_list:
+        source_path = os.path.join(cwd, 'template', file_name)
+        target_path = os.path.join(cwd, get_new_file_name(file_name))
+        render(source_path, target_path)
 
 def onchange():
+    global conf
+    conf = getConfig()
     renderTPL()
     yaml2plist()
 
@@ -69,3 +105,4 @@ settings.add_on_change('ETPL', onchange);
 
 if not os.path.exists(new_plist_path):
     onchange()
+
