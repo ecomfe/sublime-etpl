@@ -4,6 +4,4 @@ node_modules/
 *.pyc
 *.sublime-snippet
 *.YAML-tmLanguage
-*.tmLanguage
-*.cache
 

@@ -6,7 +6,7 @@ import re
 
 import sublime, sublime_plugin
 
-settings = sublime.load_settings("ETPL.sublime-settings")
+settings = None
 
 cwd = os.path.dirname(__file__)
 
@@ -102,9 +102,19 @@ def onchange():
     renderTPL()
     yaml2plist()
 
-settings.clear_on_change('ETPL');
-settings.add_on_change('ETPL', onchange);
+# st3 会自动调用用plugin_load, st2 不会，所以st2需要手动调用
+def plugin_loaded():
 
-if not os.path.exists(new_plist_path):
-    onchange()
+    global settings
+    settings = sublime.load_settings("ETPL.sublime-settings")
 
+    settings.clear_on_change('ETPL');
+    settings.add_on_change('ETPL', onchange);
+
+    # 如果是第一次加载，执行一下
+    if not os.path.exists(yaml_path):
+        onchange()
+
+if sys.version.split('.')[0] == '2':
+    plugin_loaded()
+    
