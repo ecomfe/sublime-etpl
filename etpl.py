@@ -102,7 +102,7 @@ def onchange():
     renderTPL()
     yaml2plist()
 
-# st3 会自动调用用plugin_load, st2 不会，所以st2需要手动调用
+# st3 will auto call function plugin_load, but st2 won't
 def plugin_loaded():
 
     global settings
@@ -111,10 +111,11 @@ def plugin_loaded():
     settings.clear_on_change('ETPL');
     settings.add_on_change('ETPL', onchange);
 
-    # 如果是第一次加载，执行一下
     if not os.path.exists(yaml_path):
         onchange()
 
+    print('[%s] plugin_loaded' % (PLUGIN_NAME))
+
 if sys.version.split('.')[0] == '2':
     plugin_loaded()
-    
+
