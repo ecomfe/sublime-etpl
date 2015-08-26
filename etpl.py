@@ -1,7 +1,6 @@
 import os
 import sys
 import subprocess
-import yaml
 import plistlib
 import re
 
@@ -30,6 +29,9 @@ def add(path):
 add(libpath)
 # Differentiate between Python 2 and Python 3 packages (split by folder)
 add(os.path.join(libpath, "_py%d" % sys.version_info[0]))
+
+# Must add Lib path first
+import yaml
 
 def getConfig():
 
