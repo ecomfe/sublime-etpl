@@ -9,9 +9,13 @@ An ETPL syntax definition & snippets specifically for Sublime Text.
 
 ## Screenshot
 
-<img width="906" alt="Base 16 Ocean" src="https://cloud.githubusercontent.com/assets/157338/9234352/f8621de0-416a-11e5-9288-7409a647f8fa.png">
+_Default_ syntax & `base16-ocean.dark.tmTheme`:
 
-<img width="906" alt="Tomorrow" src="https://cloud.githubusercontent.com/assets/157338/9234358/ffdaffd8-416a-11e5-964c-a6a23be84dbc.png">
+<img width="865" alt="Base 16 Ocean" src="https://cloud.githubusercontent.com/assets/157338/9528527/7a85d9d4-4d27-11e5-8ffa-ace601bebf6f.png">
+
+_Mustache style_ syntax & `Tomorrow.tmTheme`:
+
+<img width="865" alt="Tomorrow" src="https://cloud.githubusercontent.com/assets/157338/9528567/c515dcf6-4d27-11e5-936b-1e47e994dee5.png">
 
 ## Install
 
@@ -42,8 +46,9 @@ If you haven't used it yet, just install it from the link above and then:
 
 ## Settings
 
-### Default settings
-```
+Go to `Preferences` > `Package Settings` > `ETPL` > `Settings - User`, insert & override the following JSON snippet:
+
+```json
 {
     "commandOpen": "<!--",
     "commandClose": "-->",
@@ -77,6 +82,11 @@ Key bindings for `<!-- // ETPL_COMMENTS -->`:
 ## Related
 
 * ETPL: [Website](http://ecomfe.github.io/etpl/), [GitHub](https://github.com/ecomfe/etpl)
+
+## Contributors
+
+* Firede: [GitHub](https://github.com/firede), [Weibo](http://weibo.com/firede)
+* huanghuiquan: [GitHub](https://github.com/huanghuiquan)
 
 ## License
 

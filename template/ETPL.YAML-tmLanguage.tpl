@@ -1,6 +1,6 @@
 # ETPL
 # author: Firede(firede@firede.us)
-# github: https://github.com/firede/sublime-etpl
+# github: https://github.com/ecomfe/sublime-etpl
 ---
 name: ETPL
 scopeName: text.html.etpl
