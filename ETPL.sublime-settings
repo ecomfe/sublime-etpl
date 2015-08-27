@@ -1,0 +1,6 @@
+{
+    "commandOpen": "<!--",
+    "commandClose": "-->",
+    "variableOpen": "${",
+    "variableClose": "}"
+}

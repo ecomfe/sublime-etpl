@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>fileTypes</key>
@@ -39,7 +39,7 @@
 		<key>commands</key>
 		<dict>
 			<key>begin</key>
-			<string>(&lt;!--)\s*(\/)?([a-z]+)\s*(:)?</string>
+			<string>(\&lt;\!\-\-)\s*(\/)?([a-z]+)\s*(:)?</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -64,7 +64,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(--&gt;)</string>
+			<string>(\-\-\&gt;)</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
@@ -102,11 +102,11 @@
 		<key>comments</key>
 		<dict>
 			<key>begin</key>
-			<string>&lt;!--\s*\/\/</string>
+			<string>\&lt;\!\-\-\s*\/\/</string>
 			<key>comment</key>
 			<string>ETPL comments, like &lt;!-- // comments --&gt;</string>
 			<key>end</key>
-			<string>--&gt;</string>
+			<string>\-\-\&gt;</string>
 			<key>name</key>
 			<string>comment.line.character.etpl</string>
 			<key>patterns</key>

@@ -17,8 +17,8 @@ patterns:
 repository:
   commands:
     name: meta.command.etpl
-    begin: (<!--)\s*(\/)?([a-z]+)\s*(:)?
-    end: (-->)
+    begin: (#{commandOpen})\s*(\/)?([a-z]+)\s*(:)?
+    end: (#{commandClose})
     beginCaptures:
       '1': {name: storage.type.command.begin.etpl}
       '2': {name: keyword.operator.command.close.etpl}
@@ -64,8 +64,8 @@ repository:
   comments:
     comment: ETPL comments, like <!-- // comments -->
     name: comment.line.character.etpl
-    begin: <!--\s*\/\/
-    end: -->
+    begin: #{commandOpen}\s*\/\/
+    end: #{commandClose}
     patterns:
     - include: '#invalid-comments'
     - name: invalid.reminder.etpl
