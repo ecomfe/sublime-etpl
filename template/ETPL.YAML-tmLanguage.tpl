@@ -17,7 +17,7 @@ patterns:
 repository:
   commands:
     name: meta.command.etpl
-    begin: (#{commandOpen})\s*(\/)?([a-z]+)\s*(:)?
+    begin: (#{commandOpen})\s*(\/)?([a-z]*)\s*(:)?
     end: (#{commandClose})
     beginCaptures:
       '1': {name: storage.type.command.begin.etpl}

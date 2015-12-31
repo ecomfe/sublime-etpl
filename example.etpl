@@ -140,3 +140,10 @@ html {
 }
 <!-- /if -->
 </style>
+
+<!-- // 省略 target -->
+<!-- : header -->
+Hi, Target!
+
+<!-- :footer -->
+Hello, Target!

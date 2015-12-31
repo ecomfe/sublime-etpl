@@ -39,7 +39,7 @@
 		<key>commands</key>
 		<dict>
 			<key>begin</key>
-			<string>(\&lt;\!\-\-)\s*(\/)?([a-z]+)\s*(:)?</string>
+			<string>(\&lt;\!\-\-)\s*(\/)?([a-z]*)\s*(:)?</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
